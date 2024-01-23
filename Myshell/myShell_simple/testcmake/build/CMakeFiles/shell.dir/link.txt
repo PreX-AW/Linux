@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/shell.dir/src/myShell_simple.c.o  -o ../bin/shell   -L/home/ros1/Documents/Cpp/Linux/Myshell/myShell_simple/testcmake/lib  -Wl,-rpath,/home/ros1/Documents/Cpp/Linux/Myshell/myShell_simple/testcmake/lib ../lib/libmyShell_lib.a 
