@@ -35,7 +35,26 @@ int main()
 		command_Str[strlen(command_Str)-1]='\0';
 		separate_Command(command_Str,sub_Command);
 		//printf_Sub_command(sub_Command);
-		execvp(sub_Command[0], sub_Command);
+    pid_t pid=fork();
+    if(0==pid)
+    {
+      //  child_process
+      if("ls"==sub_Command[0])
+      {
+        int i=0;
+        for(;sub_Command[i++];);
+        sub_Command[--i]="--color=auto";
+        execvp(sub_Command[0],sub_Command);
+      }
+      execvp(sub_Command[0],sub_Command);
+    }
+    else 
+    {
+      // parent_process
+      int status=0;
+      waitpid(pid,&status,0);
+      
+    }
 
 
 	}
