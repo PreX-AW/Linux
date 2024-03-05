@@ -43,7 +43,7 @@ int main()
       {
         int i=0;
         for(;sub_Command[i++];);
-        sub_Command[--i]="--color=auto";
+        sub_Command[i-1]="--color=auto";
         execvp(sub_Command[0],sub_Command);
       }
       execvp(sub_Command[0],sub_Command);
