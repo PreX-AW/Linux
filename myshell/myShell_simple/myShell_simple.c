@@ -33,18 +33,19 @@ int main()
   int sep_result=separate_cmd_str(command_input, sub_Command);  
   if(0==sep_result)
   {
-    Debug_sub_command(sub_Command);
-    // pid_t pid=fork();
-    // if(0==pid)
-    // {
-    //   //child_process
-    // }
-    // else
-    // {
-    //   //parent_process
-    //   pid_t wstatus=0;
-    //   waitpid(-1, &wstatus, 0);
-    // }
+    // Debug_sub_command(sub_Command);
+     pid_t pid=fork();
+     if(0==pid)
+     {
+       //child_process
+       execvp(sub_Command[0],sub_Command);
+     }
+     else
+     {
+       //parent_process
+       pid_t wstatus=0;
+       waitpid(-1, &wstatus, 0);
+     }
   }
 
   }
