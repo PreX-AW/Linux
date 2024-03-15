@@ -32,6 +32,7 @@ int main() {
     if (0 == sep_result) {
       // Debug_sub_command(sub_Command);
       // Check build-in command
+
       // `cd` command
       if (0 == strcmp(sub_Command[0], "cd")) {
         if (sub_Command[1]) {
@@ -47,9 +48,10 @@ int main() {
           continue;
         }
       }
+
       // `echo` command
       if (0 == strcmp(sub_Command[0], "echo")) {
-        if ('$' == *(sub_Command[1])) {
+        if ((NULL != sub_Command[1]) && ('$' == *(sub_Command[1]))) {
           // echo environment varible
           if ('?' == *(sub_Command[1] + 1)) {
             printf("%d\n", return_code);
@@ -59,7 +61,12 @@ int main() {
           printf("%s=%s\n", sub_Command[1] + 1, environment_varible);
           continue;
         }
+        if (NULL == sub_Command[1]) {
+          printf("\n");
+          continue;
+        }
       }
+
       // `export` command
       if (0 == strcmp(sub_Command[0], "export")) {
         if (NULL != sub_Command[1]) {
