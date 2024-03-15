@@ -1,4 +1,0 @@
-/home/ros1/Documents/Cpp/Linux/Myshell/myShell_simple/testcmake/build/CMakeFiles/rebuild_cache.dir
-/home/ros1/Documents/Cpp/Linux/Myshell/myShell_simple/testcmake/build/CMakeFiles/edit_cache.dir
-/home/ros1/Documents/Cpp/Linux/Myshell/myShell_simple/testcmake/build/CMakeFiles/myShell.dir
-/home/ros1/Documents/Cpp/Linux/Myshell/myShell_simple/testcmake/build/CMakeFiles/my_Shell_lib.dir

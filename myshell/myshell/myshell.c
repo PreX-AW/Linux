@@ -34,6 +34,7 @@ int main()
   if(0==sep_result)
   {
     // Debug_sub_command(sub_Command);
+    //Check build-in commadn
      pid_t pid=fork();
      if(0==pid)
      {
@@ -69,6 +70,12 @@ int separate_cmd_str(char* command_input,char** sub_Command)
   {
     count++;
     sub_Command[count]=strtok(NULL, SEP_TOKEN);
+  }
+  //use system color theme
+  if(0==strcmp(sub_Command[0],"ls"))
+  {
+    sub_Command[count++]="--color=auto";
+    sub_Command[count]=NULL;
   }
   return 0;
 }

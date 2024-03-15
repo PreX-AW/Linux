@@ -1,1 +1,0 @@
-/usr/bin/cc -fPIC   -shared -Wl,-soname,libmyshell.so -o ../lib/libmyshell.so CMakeFiles/myshell.dir/src/myShell_simple.c.o CMakeFiles/myshell.dir/src/print_Sub_command.c.o CMakeFiles/myshell.dir/src/saparate_Command.c.o 
