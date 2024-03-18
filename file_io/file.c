@@ -27,15 +27,24 @@ int main()
 //close(fd);
 //printf("fd:%d\n",stdout->_fileno);
 
- int fd1 =open(LOG1,O_RDONLY|O_CREAT);
- printf("fd1:%d\n",fd1);
- int fd2 =open(LOG2,O_RDONLY|O_CREAT);
- printf("fd2:%d\n",fd2);
- int fd3 =open(LOG3,O_RDONLY|O_CREAT);
- printf("fd3:%d\n",fd3);
- close(fd3);
- int fd4 =open(LOG4,O_RDONLY|O_CREAT);
- printf("fd4:%d\n",fd4);
+ //int fd1 =open(LOG1,O_RDONLY|O_CREAT);
+ //printf("fd1:%d\n",fd1);
+ //int fd2 =open(LOG2,O_RDONLY|O_CREAT);
+ //printf("fd2:%d\n",fd2);
+ //int fd3 =open(LOG3,O_RDONLY|O_CREAT);
+ //printf("fd3:%d\n",fd3);
+ //close(fd3);
+ //int fd4 =open(LOG4,O_RDONLY|O_CREAT);
+ //printf("fd4:%d\n",fd4);
+  umask(0);
+int fd1=open(LOG1,O_WRONLY|O_CREAT,0666);
+
+printf("wizard!\n");
+
+dup2(fd1,1);
+
+printf("wizard!\n");
+
 
  
 
