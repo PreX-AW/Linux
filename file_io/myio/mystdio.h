@@ -5,6 +5,7 @@
 #include<unistd.h>
 #include<assert.h>
 #include<string.h>
+#include<stdio.h>
 #define NUM 1024
 #define FLAG_READ   0x1
 #define FLAG_WRITE  0x2

@@ -1,5 +1,4 @@
 #include"mystdio.h"
-#include <cstdlib>
 #include <fcntl.h>
 #include <sys/stat.h>
 
@@ -34,7 +33,7 @@ size_t my_fwrite(const void*buffer,size_t size,size_t num,MY_FILE*stream)
 {
   assert(buffer);
   size_t usr_size=size*num;
-  size_t write_size=strlen(stream->buffer)-stream->count;
+  size_t write_size=strlen((char*)stream->buffer)-stream->count;
   if(usr_size>write_size)
   {
       //my_fflush before
@@ -48,5 +47,12 @@ size_t my_fwrite(const void*buffer,size_t size,size_t num,MY_FILE*stream)
 int my_fclose(MY_FILE*stream)
 {
   assert(stream);
-  if(strlen(stream->buffer)>0)my_fflush(stream);
+  if(strlen((char*)stream->buffer)>0)my_fflush(stream);
+  stream->count=0;
+  free(stream);
+  stream=NULL;
+
+
+
+
 }
