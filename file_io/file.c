@@ -36,17 +36,22 @@ int main()
  //close(fd3);
  //int fd4 =open(LOG4,O_RDONLY|O_CREAT);
  //printf("fd4:%d\n",fd4);
-  umask(0);
-int fd1=open(LOG1,O_WRONLY|O_CREAT,0666);
+//  umask(0);
+//int fd1=open(LOG1,O_WRONLY|O_CREAT,0666);
+//
+//printf("wizard!\n");
+//
+//dup2(fd1,1);
+//
+//printf("wizard!\n");
+//
 
-printf("wizard!\n");
-
-dup2(fd1,1);
-
-printf("wizard!\n");
-
-
- 
+  FILE* fd=fopen(LOG1,"w");
+  const char* buffer_lan="wizard lan_function!\n";
+  const char* buffer_op="wizard op_function!\n";
+  fprintf(fd,"%s",buffer_lan);
+  write(fd->_fileno,buffer_op, strlen(buffer_op));
+  fork(); 
 
   return 0;
 }

@@ -1,1 +1,3 @@
-wizard!
+wizard op_function!
+wizard lan_function!
+wizard lan_function!
