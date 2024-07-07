@@ -4,4 +4,5 @@ ctrlprocess:main.cc ctrl.hpp
 clean:
 	rm -rf ctrlprocess
 .PHONY:run
+run:
 	./ctrlprocess
