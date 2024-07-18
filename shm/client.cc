@@ -4,11 +4,13 @@
 #include <iostream>
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#include <unistd.h>
 shmid_ds buf;
 
 int main() {
   key_t k = getKey();
-  int shmId = shmget(k, SHM_SIZE, IPC_CREAT);
+  // int shmId = shmget(k, SHM_SIZE, IPC_CREAT);
+  int shmId = getShm(k, SHM_SIZE);
   if (-1 == shmId) {
     std::cerr << errno << ":" << strerror(errno) << std::endl;
     exit(3);
@@ -17,7 +19,11 @@ int main() {
             << ":" << dec2hex(k) << std::endl;
   std::cout << "shmId"
             << ":" << dec2hex(shmId) << std::endl;
+  shmctl(shmId, 2, &buf);
+  std::cout << dec2hex(buf.shm_perm.__key) << std::endl;
+  std::cout << buf.shm_cpid << " " << getpid() << std::endl;
+  sleep(10);
   delShm(shmId);
-
+  std::cout << "Client distory shared memory." << std::endl;
   return 0;
 }

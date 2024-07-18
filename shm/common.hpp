@@ -23,6 +23,18 @@ key_t getKey() {
   return k;
 }
 
+int createShm(key_t key, size_t shmSize) {
+  umask(0);
+  int temp = shmget(key, shmSize, IPC_CREAT | IPC_EXCL | 0666);
+  assert(-1 != temp), (void)temp;
+  return temp;
+}
+int getShm(key_t key, size_t shmSize) {
+  int temp = shmget(key, shmSize, IPC_CREAT);
+  assert(-1 != temp), (void)temp;
+  return temp;
+}
+
 std::string dec2hex(int num) {
   char buf[64];
   snprintf(buf, sizeof buf, "0x%x", num);
