@@ -22,13 +22,12 @@ int main() {
 
   shmClient client;
   char *start = client.clientAddr();
+  start[27] = '\0';
   char c = 'A';
-  while (c < 'Z') {
+  while (c <= 'Z') {
     start[c - 'A'] = c;
     c++;
-    start[c - 'A'] = '\0';
     sleep(1);
   }
-  sleep(4);
   return 0;
 }
