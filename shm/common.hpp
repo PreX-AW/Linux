@@ -27,11 +27,13 @@ int createShm(key_t key, size_t shmSize) {
   umask(0);
   int temp = shmget(key, shmSize, IPC_CREAT | IPC_EXCL | 0666);
   assert(-1 != temp), (void)temp;
+  std::cout << "shmId:" << temp << std::endl;
   return temp;
 }
 int getShm(key_t key, size_t shmSize) {
   int temp = shmget(key, shmSize, IPC_CREAT);
   assert(-1 != temp), (void)temp;
+  std::cout << "shmId:" << temp << std::endl;
   return temp;
 }
 
@@ -46,4 +48,48 @@ void delShm(int shmid) {
   assert(-1 != n), (void)n;
 }
 
+char *attachShm(int shmid) {
+  void *start = shmat(shmid, nullptr, 0);
+  assert((void *)-1 != start), (void)start;
+  return ((char *)start);
+}
+
+void detachShm(char *shmaddr) {
+  int detachResult = shmdt((void *)shmaddr);
+  assert(-1 != detachResult), (void)detachResult;
+}
+class shmClient {
+private:
+  int shmId;
+  char *_start;
+
+public:
+  shmClient() {
+    key_t k = getKey();
+    shmId = getShm(k, SHM_SIZE);
+    _start = attachShm(shmId);
+    printf("Client attached address %p\n", _start);
+  }
+  char *clientAddr() const { return _start; }
+  ~shmClient() { detachShm(_start); }
+};
+
+class shmServer {
+private:
+  char *_start;
+  int shmId;
+
+public:
+  shmServer() {
+    key_t k = getKey();
+    shmId = createShm(k, SHM_SIZE);
+    _start = attachShm(shmId);
+    printf("Server attached address %p\n", _start);
+  }
+  char *serverAddr() const { return _start; }
+  ~shmServer() {
+    detachShm(_start);
+    delShm(shmId);
+  }
+};
 #endif
